@@ -1,0 +1,180 @@
+/* ── App shell ─────────────────────────────────────────────── */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--color-bg-base);
+  color: var(--color-text-primary);
+}
+
+/* ── Toolbar ────────────────────────────────────────────────── */
+.app__toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  height: var(--header-height);
+  padding: 0 var(--space-6);
+  background: var(--color-bg-surface);
+  border-bottom: 1px solid var(--color-border-subtle);
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+.app__toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.app__logo-text {
+  font-weight: 700;
+  font-size: var(--text-md);
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--color-accent-primary), #818CF8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── ⌘K search button (center) ──────────────────────────────── */
+.app__cmd-btn {
+  flex: 1;
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+  text-align: left;
+}
+
+.app__cmd-btn:hover {
+  border-color: var(--color-border-default);
+  background: var(--color-bg-elevated);
+  color: var(--color-text-secondary);
+}
+
+.app__cmd-btn span:not(.app__cmd-hint) {
+  flex: 1;
+}
+
+.app__cmd-hint {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  padding: 1px 5px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/* ── Toolbar right ─────────────────────────────────────────── */
+.app__toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-left: auto;
+}
+
+.app__status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+.app__status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-success);
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.5);
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* ── Breadcrumb row ────────────────────────────────────────── */
+.app__breadcrumb {
+  flex-shrink: 0;
+}
+
+/* ── Three-column layout ──────────────────────────────────── */
+.app__layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr 0;
+  flex: 1;
+  overflow: hidden;
+  transition: grid-template-columns 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.app__layout--panel-open {
+  grid-template-columns: var(--sidebar-width) 1fr var(--properties-width);
+}
+
+/* ── Mobile (< 768px) ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .app__layout {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: 1fr;
+    position: relative;
+  }
+
+  .file-tree {
+    display: none;
+  }
+
+  .app__cmd-btn {
+    max-width: 100%;
+  }
+
+  /* Properties panel as bottom sheet on mobile */
+  .props-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 70vh;
+    transform: translateY(100%);
+    border-top: 1px solid var(--color-border-subtle);
+    border-left: none;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    z-index: 800;
+    transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .props-panel--open {
+    transform: translateY(0);
+  }
+
+  /* Mobile overlay when sheet open */
+  .app__layout--panel-open::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 799;
+  }
+
+  .keyboard-legend {
+    display: none;
+  }
+}

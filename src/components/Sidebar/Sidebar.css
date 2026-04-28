@@ -1,0 +1,241 @@
+/**
+ * Sidebar Styles
+ * 
+ * Styles for the left navigation sidebar that exactly matches
+ * the design shown in the screenshots
+ */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--color-bg-sidebar);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-primary);
+}
+
+/* Navigation Section */
+.sidebar__navigation {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.sidebar__nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.sidebar__nav-item {
+  /* Remove default list styling */
+}
+
+/* Navigation Buttons */
+.sidebar__nav-button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+/* Navigation button hover state */
+.sidebar__nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--color-text-primary);
+}
+
+/* Active navigation button */
+.sidebar__nav-button--active {
+  background-color: var(--color-accent-selection);
+  color: var(--color-text-primary);
+  border-left: 3px solid var(--color-accent-primary);
+  margin-left: -3px; /* Compensate for border */
+}
+
+/* Primary button (New Volume) - Blue styling as in screenshots */
+.sidebar__nav-button--primary {
+  background-color: var(--color-accent-primary);
+  color: white;
+  font-weight: var(--font-weight-semibold);
+}
+
+.sidebar__nav-button--primary:hover {
+  background-color: var(--color-accent-hover);
+  color: white;
+}
+
+/* Navigation icons */
+.sidebar__nav-icon {
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.sidebar__nav-button--active .sidebar__nav-icon,
+.sidebar__nav-button--primary .sidebar__nav-icon {
+  opacity: 1;
+}
+
+/* Navigation labels */
+.sidebar__nav-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Search Section */
+.sidebar__search {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+/* Main Content Area (File Tree) */
+.sidebar__content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--space-2) 0;
+}
+
+/* Footer Section */
+.sidebar__footer {
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border-subtle);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Storage Usage Component */
+.sidebar__storage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.sidebar__storage-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.sidebar__storage-icon {
+  color: var(--color-text-muted);
+}
+
+.sidebar__storage-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Storage Progress Bar */
+.sidebar__storage-bar {
+  width: 100%;
+  height: 4px;
+  background-color: var(--color-border-default);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.sidebar__storage-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-hover));
+  border-radius: var(--radius-sm);
+  transition: width var(--transition-base);
+}
+
+/* Storage percentage text */
+.sidebar__storage-text {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sidebar__storage-percentage {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+/* Focus states for accessibility */
+.sidebar__nav-button:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    /* Horizontal layout on mobile */
+    flex-direction: row;
+    height: auto;
+    overflow-x: auto;
+  }
+  
+  .sidebar__navigation {
+    flex-shrink: 0;
+    border-bottom: none;
+    border-right: 1px solid var(--color-border-subtle);
+  }
+  
+  .sidebar__nav-list {
+    flex-direction: row;
+    gap: var(--space-2);
+  }
+  
+  .sidebar__nav-button {
+    white-space: nowrap;
+    padding: var(--space-2) var(--space-3);
+  }
+  
+  .sidebar__content {
+    flex: 1;
+    padding: var(--space-2);
+  }
+  
+  .sidebar__footer {
+    flex-shrink: 0;
+    border-top: none;
+    border-left: 1px solid var(--color-border-subtle);
+    min-width: 120px;
+  }
+  
+  .sidebar__storage {
+    gap: var(--space-1);
+  }
+  
+  .sidebar__storage-label {
+    display: none; /* Hide label on mobile to save space */
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .sidebar__nav-button--active {
+    background-color: var(--color-text-primary);
+    color: var(--color-bg-base);
+  }
+  
+  .sidebar__storage-fill {
+    background: var(--color-text-primary);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar__nav-button,
+  .sidebar__storage-fill {
+    transition: none;
+  }
+}

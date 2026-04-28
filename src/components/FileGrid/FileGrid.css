@@ -1,0 +1,27 @@
+.file-grid {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  background: var(--color-bg-base);
+}
+
+.file-grid__inner {
+  padding: var(--space-6);
+  flex: 1;
+}
+
+.file-grid__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--space-3);
+}
+
+.file-grid__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}

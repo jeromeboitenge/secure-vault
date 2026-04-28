@@ -1,0 +1,195 @@
+/**
+ * LayoutContainer Styles
+ * 
+ * Creates the exact three-column grid layout from the screenshots
+ * with smooth transitions for the properties panel
+ */
+
+.layout-container {
+  /* Main grid layout - matches screenshot exactly */
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr 0;
+  grid-template-rows: 1fr;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-bg-base);
+  overflow: hidden;
+  
+  /* Smooth transition when properties panel appears */
+  transition: grid-template-columns var(--transition-base);
+}
+
+/* When properties panel is visible */
+.layout-container--with-properties {
+  grid-template-columns: var(--sidebar-width) 1fr var(--properties-width);
+}
+
+/* Left Sidebar */
+.layout-sidebar {
+  background-color: var(--color-bg-sidebar);
+  border-right: 1px solid var(--color-border-subtle);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  
+  /* Ensure sidebar stays fixed width */
+  min-width: var(--sidebar-width);
+  max-width: var(--sidebar-width);
+}
+
+/* Main Content Area */
+.layout-main {
+  background-color: var(--color-bg-base);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  
+  /* Ensure main content is flexible */
+  min-width: 0; /* Allows flex item to shrink below content size */
+}
+
+/* Properties Panel */
+.layout-properties {
+  background-color: var(--color-bg-surface);
+  border-left: 1px solid var(--color-border-subtle);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  
+  /* Start hidden and slide in */
+  transform: translateX(100%);
+  transition: transform var(--transition-base);
+  
+  /* Ensure properties panel stays fixed width */
+  min-width: var(--properties-width);
+  max-width: var(--properties-width);
+}
+
+/* Properties panel visible state */
+.layout-properties--visible {
+  transform: translateX(0);
+}
+
+/* Responsive Design - Mobile Layout */
+@media (max-width: 768px) {
+  .layout-container {
+    /* Stack vertically on mobile */
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+      "sidebar"
+      "main"
+      "properties";
+  }
+  
+  .layout-container--with-properties {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+  }
+  
+  .layout-sidebar {
+    grid-area: sidebar;
+    min-width: unset;
+    max-width: unset;
+    height: auto;
+    max-height: 200px; /* Limit sidebar height on mobile */
+  }
+  
+  .layout-main {
+    grid-area: main;
+    min-height: 0;
+  }
+  
+  .layout-properties {
+    grid-area: properties;
+    min-width: unset;
+    max-width: unset;
+    
+    /* Mobile: slide up from bottom instead of right */
+    transform: translateY(100%);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60vh;
+    max-height: 500px;
+    z-index: var(--z-modal);
+    
+    /* Add rounded top corners for mobile bottom sheet */
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    border-left: none;
+    border-top: 1px solid var(--color-border-subtle);
+    
+    /* Add backdrop blur effect */
+    backdrop-filter: blur(8px);
+  }
+  
+  .layout-properties--visible {
+    transform: translateY(0);
+  }
+  
+  /* Add overlay backdrop on mobile when properties panel is open */
+  .layout-container--with-properties::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: calc(var(--z-modal) - 1);
+    opacity: 0;
+    animation: fadeIn var(--transition-base);
+  }
+}
+
+/* Tablet Layout */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .layout-container {
+    /* Slightly smaller sidebar on tablet */
+    grid-template-columns: 240px 1fr 0;
+  }
+  
+  .layout-container--with-properties {
+    grid-template-columns: 240px 1fr 280px;
+  }
+  
+  .layout-sidebar {
+    min-width: 240px;
+    max-width: 240px;
+  }
+  
+  .layout-properties {
+    min-width: 280px;
+    max-width: 280px;
+  }
+}
+
+/* Large Desktop Layout */
+@media (min-width: 1400px) {
+  .layout-container--with-properties {
+    /* Slightly wider properties panel on large screens */
+    grid-template-columns: var(--sidebar-width) 1fr 360px;
+  }
+  
+  .layout-properties {
+    min-width: 360px;
+    max-width: 360px;
+  }
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+  .layout-sidebar,
+  .layout-properties {
+    border-color: var(--color-text-primary);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .layout-container,
+  .layout-properties {
+    transition: none;
+  }
+}

@@ -1,0 +1,101 @@
+/**
+ * FileTree Styles
+ * 
+ * Styles for the main file tree container and layout
+ */
+
+.file-tree {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: var(--font-family-primary);
+  color: var(--color-text-primary);
+}
+
+/* Tree header with summary information */
+.file-tree__header {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border-subtle);
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.file-tree__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.file-tree__file-count {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Main tree content area */
+.file-tree__content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--space-2) 0;
+}
+
+/* Children container for nested items */
+.file-tree__children {
+  /* Children are indented by the FileTreeNode component */
+}
+
+/* Empty state */
+.file-tree--empty {
+  justify-content: center;
+  align-items: center;
+}
+
+.file-tree__empty-message {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: var(--space-8);
+}
+
+.file-tree__empty-message p {
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+/* Scrollbar styling for the tree content */
+.file-tree__content::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+}
+
+.file-tree__content::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+.file-tree__content::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: var(--radius-sm);
+}
+
+.file-tree__content::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Focus management for keyboard navigation */
+.file-tree:focus-within {
+  /* Ensure tree is focusable for keyboard navigation */
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+  .file-tree__header {
+    border-color: var(--color-text-primary);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .file-tree__content {
+    scroll-behavior: auto;
+  }
+}

@@ -1,0 +1,376 @@
+{
+  "id": "root",
+  "name": "Vault",
+  "type": "folder",
+  "children": [
+    {
+      "id": "f1",
+      "name": "Legal",
+      "type": "folder",
+      "children": [
+        {
+          "id": "f1-1",
+          "name": "Case Files",
+          "type": "folder",
+          "children": [
+            {
+              "id": "file-1",
+              "name": "Deposition_2024.pdf",
+              "type": "file",
+              "fileType": "pdf",
+              "size": "2.4 MB",
+              "modified": "2024-11-12",
+              "owner": "Jane Cooper",
+              "encrypted": true
+            },
+            {
+              "id": "file-2",
+              "name": "Witness_Statements.pdf",
+              "type": "file",
+              "fileType": "pdf",
+              "size": "1.1 MB",
+              "modified": "2024-10-05",
+              "owner": "Jane Cooper",
+              "encrypted": true
+            },
+            {
+              "id": "file-3",
+              "name": "Case_Summary.doc",
+              "type": "file",
+              "fileType": "doc",
+              "size": "340 KB",
+              "modified": "2024-09-22",
+              "owner": "Marcus Lee",
+              "encrypted": false
+            }
+          ]
+        },
+        {
+          "id": "f1-2",
+          "name": "Contracts",
+          "type": "folder",
+          "children": [
+            {
+              "id": "file-4",
+              "name": "NDA_Template_v3.pdf",
+              "type": "file",
+              "fileType": "pdf",
+              "size": "88 KB",
+              "modified": "2024-08-14",
+              "owner": "Sarah Chen",
+              "encrypted": true
+            },
+            {
+              "id": "file-5",
+              "name": "Employment_Agreement.doc",
+              "type": "file",
+              "fileType": "doc",
+              "size": "215 KB",
+              "modified": "2024-07-30",
+              "owner": "Robert Kim",
+              "encrypted": false
+            },
+            {
+              "id": "f1-2-1",
+              "name": "Amendments",
+              "type": "folder",
+              "children": [
+                {
+                  "id": "file-6",
+                  "name": "Amendment_01.doc",
+                  "type": "file",
+                  "fileType": "doc",
+                  "size": "64 KB",
+                  "modified": "2024-06-18",
+                  "owner": "Sarah Chen",
+                  "encrypted": false
+                },
+                {
+                  "id": "file-7",
+                  "name": "Amendment_02_Signed.pdf",
+                  "type": "file",
+                  "fileType": "pdf",
+                  "size": "102 KB",
+                  "modified": "2024-06-25",
+                  "owner": "Sarah Chen",
+                  "encrypted": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "f1-3",
+          "name": "Compliance",
+          "type": "folder",
+          "children": [
+            {
+              "id": "file-8",
+              "name": "GDPR_Review_Notes.txt",
+              "type": "file",
+              "fileType": "txt",
+              "size": "18 KB",
+              "modified": "2024-11-01",
+              "owner": "Alice Novak",
+              "encrypted": false
+            },
+            {
+              "id": "file-9",
+              "name": "Audit_Report_2024.pdf",
+              "type": "file",
+              "fileType": "pdf",
+              "size": "4.8 MB",
+              "modified": "2024-11-08",
+              "owner": "Alice Novak",
+              "encrypted": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f2",
+      "name": "Finance",
+      "type": "folder",
+      "children": [
+        {
+          "id": "f2-1",
+          "name": "Quarterly Reports",
+          "type": "folder",
+          "children": [
+            {
+              "id": "file-10",
+              "name": "Q1_2024_Financial.pdf",
+              "type": "file",
+              "fileType": "pdf",
+              "size": "3.2 MB",
+              "modified": "2024-04-15",
+              "owner": "David Park",
+              "encrypted": true
+            },
+            {
+              "id": "file-11",
+              "name": "Q2_2024_Financial.pdf",
+              "type": "file",
+              "fileType": "pdf",
+              "size": "3.6 MB",
+              "modified": "2024-07-15",
+              "owner": "David Park",
+              "encrypted": true
+            },
+            {
+              "id": "file-12",
+              "name": "Q3_2024_Financial.pdf",
+              "type": "file",
+              "fileType": "pdf",
+              "size": "3.4 MB",
+              "modified": "2024-10-15",
+              "owner": "David Park",
+              "encrypted": true
+            }
+          ]
+        },
+        {
+          "id": "f2-2",
+          "name": "Bank Records",
+          "type": "folder",
+          "children": [
+            {
+              "id": "file-13",
+              "name": "Statement_Oct_2024.pdf",
+              "type": "file",
+              "fileType": "pdf",
+              "size": "520 KB",
+              "modified": "2024-11-01",
+              "owner": "Linda Osei",
+              "encrypted": true
+            },
+            {
+              "id": "file-14",
+              "name": "Wire_Transfer_Log.json",
+              "type": "file",
+              "fileType": "json",
+              "size": "45 KB",
+              "modified": "2024-11-10",
+              "owner": "Linda Osei",
+              "encrypted": true
+            },
+            {
+              "id": "f2-2-1",
+              "name": "Receipts",
+              "type": "folder",
+              "children": [
+                {
+                  "id": "file-15",
+                  "name": "Receipt_0001.jpg",
+                  "type": "file",
+                  "fileType": "jpg",
+                  "size": "256 KB",
+                  "modified": "2024-09-05",
+                  "owner": "Linda Osei",
+                  "encrypted": false
+                },
+                {
+                  "id": "file-16",
+                  "name": "Receipt_0002.jpg",
+                  "type": "file",
+                  "fileType": "jpg",
+                  "size": "310 KB",
+                  "modified": "2024-09-12",
+                  "owner": "Linda Osei",
+                  "encrypted": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f3",
+      "name": "HR",
+      "type": "folder",
+      "children": [
+        {
+          "id": "f3-1",
+          "name": "Personnel Files",
+          "type": "folder",
+          "children": [
+            {
+              "id": "f3-1-1",
+              "name": "Jane Cooper",
+              "type": "folder",
+              "children": [
+                {
+                  "id": "file-17",
+                  "name": "Offer_Letter.pdf",
+                  "type": "file",
+                  "fileType": "pdf",
+                  "size": "122 KB",
+                  "modified": "2022-03-10",
+                  "owner": "HR Team",
+                  "encrypted": true
+                },
+                {
+                  "id": "file-18",
+                  "name": "Performance_Review_2024.doc",
+                  "type": "file",
+                  "fileType": "doc",
+                  "size": "98 KB",
+                  "modified": "2024-10-30",
+                  "owner": "HR Team",
+                  "encrypted": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "f3-2",
+          "name": "Policies",
+          "type": "folder",
+          "children": [
+            {
+              "id": "file-19",
+              "name": "Remote_Work_Policy.txt",
+              "type": "file",
+              "fileType": "txt",
+              "size": "12 KB",
+              "modified": "2024-01-15",
+              "owner": "HR Team",
+              "encrypted": false
+            },
+            {
+              "id": "file-20",
+              "name": "Code_of_Conduct.pdf",
+              "type": "file",
+              "fileType": "pdf",
+              "size": "430 KB",
+              "modified": "2024-01-15",
+              "owner": "HR Team",
+              "encrypted": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f4",
+      "name": "Technology",
+      "type": "folder",
+      "children": [
+        {
+          "id": "f4-1",
+          "name": "Infrastructure",
+          "type": "folder",
+          "children": [
+            {
+              "id": "file-21",
+              "name": "network_topology.json",
+              "type": "file",
+              "fileType": "json",
+              "size": "88 KB",
+              "modified": "2024-10-20",
+              "owner": "Dev Team",
+              "encrypted": true
+            },
+            {
+              "id": "file-22",
+              "name": "server_config.txt",
+              "type": "file",
+              "fileType": "txt",
+              "size": "24 KB",
+              "modified": "2024-11-05",
+              "owner": "Dev Team",
+              "encrypted": true
+            }
+          ]
+        },
+        {
+          "id": "f4-2",
+          "name": "Design Assets",
+          "type": "folder",
+          "children": [
+            {
+              "id": "file-23",
+              "name": "brand_logo_v4.jpg",
+              "type": "file",
+              "fileType": "jpg",
+              "size": "1.8 MB",
+              "modified": "2024-09-01",
+              "owner": "Design Team",
+              "encrypted": false
+            },
+            {
+              "id": "file-24",
+              "name": "UI_Mockups_Oct.jpg",
+              "type": "file",
+              "fileType": "jpg",
+              "size": "5.1 MB",
+              "modified": "2024-10-15",
+              "owner": "Design Team",
+              "encrypted": false
+            },
+            {
+              "id": "f4-2-1",
+              "name": "Icons",
+              "type": "folder",
+              "children": [
+                {
+                  "id": "file-25",
+                  "name": "icon_set_v2.json",
+                  "type": "file",
+                  "fileType": "json",
+                  "size": "32 KB",
+                  "modified": "2024-08-20",
+                  "owner": "Design Team",
+                  "encrypted": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

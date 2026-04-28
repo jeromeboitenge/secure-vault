@@ -1,0 +1,201 @@
+/**
+ * FileTreeNode Styles
+ * 
+ * Styles for individual file tree nodes with proper indentation,
+ * hover states, selection, and smooth animations
+ */
+
+.file-tree-node__container {
+  /* Container for node and its children */
+}
+
+/* Main node button */
+.file-tree-node {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+  margin: 1px 0; /* Small margin to prevent focus ring clipping */
+}
+
+/* Hover state */
+.file-tree-node:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--color-text-primary);
+}
+
+/* Selected state - matches screenshot design */
+.file-tree-node--selected {
+  background-color: var(--color-accent-selection);
+  border-left: 3px solid var(--color-accent-primary);
+  margin-left: -3px; /* Compensate for border */
+  color: var(--color-text-primary);
+}
+
+/* Focused state for keyboard navigation */
+.file-tree-node--focused {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* Chevron icon for folders */
+.file-tree-node__chevron {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  transition: transform var(--transition-base);
+  transform: rotate(0deg);
+}
+
+.file-tree-node__chevron--expanded {
+  transform: rotate(90deg);
+}
+
+/* File/folder icon */
+.file-tree-node__icon {
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+}
+
+.file-tree-node--selected .file-tree-node__icon {
+  color: var(--color-accent-primary);
+}
+
+/* Node name */
+.file-tree-node__name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: var(--font-weight-normal);
+}
+
+/* Search highlight within names */
+.file-tree-node__highlight {
+  background-color: var(--color-accent-primary);
+  color: white;
+  padding: 1px 2px;
+  border-radius: 2px;
+  font-weight: var(--font-weight-medium);
+}
+
+/* Metadata (file size, item count) */
+.file-tree-node__meta {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.file-tree-node__size,
+.file-tree-node__count {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-normal);
+}
+
+/* Encryption indicator */
+.file-tree-node__encrypted {
+  flex-shrink: 0;
+  font-size: var(--font-size-xs);
+  opacity: 0.8;
+}
+
+/* Children container with smooth animation */
+.file-tree-node__children {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height var(--transition-base);
+}
+
+.file-tree-node__children--expanded {
+  max-height: 2000px; /* Large enough for most use cases */
+}
+
+/* Improved animation using transform for better performance */
+@supports (transform: scaleY(0)) {
+  .file-tree-node__children {
+    max-height: none;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform var(--transition-base);
+  }
+  
+  .file-tree-node__children--expanded {
+    transform: scaleY(1);
+  }
+}
+
+/* Focus states for accessibility */
+.file-tree-node:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* Active state (when clicking) */
+.file-tree-node:active {
+  transform: translateY(1px);
+}
+
+/* Disabled state */
+.file-tree-node:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+  .file-tree-node--selected {
+    background-color: var(--color-text-primary);
+    color: var(--color-bg-base);
+  }
+  
+  .file-tree-node__highlight {
+    background-color: var(--color-text-primary);
+    color: var(--color-bg-base);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .file-tree-node,
+  .file-tree-node__chevron,
+  .file-tree-node__children {
+    transition: none;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .file-tree-node {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-base);
+  }
+  
+  .file-tree-node__icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .file-tree-node__meta {
+    /* Hide metadata on very small screens to save space */
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .file-tree-node__meta {
+    display: none;
+  }
+}
