@@ -26,6 +26,7 @@ export interface VaultState {
   isCommandPaletteOpen: boolean;
   hasUsedKeyboard: boolean;
   breadcrumbPath: FileNode[];
+  currentFolderId: string;
 }
 
 export type VaultAction =
@@ -38,7 +39,8 @@ export type VaultAction =
   | { type: 'SET_SEARCH_QUERY'; payload: string }
   | { type: 'SET_COMMAND_PALETTE'; payload: boolean }
   | { type: 'SET_HAS_USED_KEYBOARD'; payload: boolean }
-  | { type: 'SET_BREADCRUMB_PATH'; payload: FileNode[] };
+  | { type: 'SET_BREADCRUMB_PATH'; payload: FileNode[] }
+  | { type: 'NAVIGATE_TO_FOLDER'; payload: string };
 
 // ── Initial State ─────────────────────────────────────────────
 const initialState: VaultState = {
@@ -49,6 +51,7 @@ const initialState: VaultState = {
   isCommandPaletteOpen: false,
   hasUsedKeyboard: false,
   breadcrumbPath: [],
+  currentFolderId: 'root',
 };
 
 // ── Reducer ───────────────────────────────────────────────────
@@ -95,6 +98,9 @@ function vaultReducer(state: VaultState, action: VaultAction): VaultState {
     }
     case 'SET_BREADCRUMB_PATH': {
       return { ...state, breadcrumbPath: action.payload };
+    }
+    case 'NAVIGATE_TO_FOLDER': {
+      return { ...state, currentFolderId: action.payload, selectedFile: null };
     }
     default:
       return state;

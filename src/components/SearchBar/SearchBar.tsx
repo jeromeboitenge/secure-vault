@@ -80,11 +80,18 @@ export function SearchBar() {
     dispatch({ type: 'EXPAND_FOLDERS', payload: ancestors });
 
     if (node.type === 'file') {
+      if (ancestors.length > 0) {
+        const parentId = ancestors[ancestors.length - 1];
+        dispatch({ type: 'NAVIGATE_TO_FOLDER', payload: parentId });
+      } else {
+        dispatch({ type: 'NAVIGATE_TO_FOLDER', payload: 'root' });
+      }
       dispatch({ type: 'SELECT_FILE', payload: node });
       const crumb = buildBreadcrumb(ROOT, node.id);
       dispatch({ type: 'SET_BREADCRUMB_PATH', payload: crumb });
     } else {
       dispatch({ type: 'EXPAND_FOLDER', payload: node.id });
+      dispatch({ type: 'NAVIGATE_TO_FOLDER', payload: node.id });
       const crumb = buildBreadcrumb(ROOT, node.id);
       dispatch({ type: 'SET_BREADCRUMB_PATH', payload: crumb });
     }

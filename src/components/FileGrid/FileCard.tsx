@@ -4,7 +4,7 @@ import {
 } from '../UI/Icons';
 import type { FileNode } from '../../context/VaultContext';
 import { useVaultState, useVaultDispatch } from '../../context/VaultContext';
-import { buildBreadcrumb } from '../../hooks/useFlatTree';
+import { buildBreadcrumb, findAncestorIds } from '../../hooks/useFlatTree';
 import rootData from '../../data/data.json';
 import './FileCard.css';
 
@@ -43,12 +43,19 @@ export const FileCard = memo(function FileCard({ node }: FileCardProps) {
 
   const handleClick = useCallback(() => {
     dispatch({ type: 'SET_FOCUSED_NODE', payload: node.id });
-    if (node.type === 'file') {
-      dispatch({ type: 'SELECT_FILE', payload: node });
+
+    if (node.type === 'folder') {
+      // Navigate INTO the folder — update grid view
+      dispatch({ type: 'NAVIGATE_TO_FOLDER', payload: node.id });
+      // Expand it in the sidebar tree too
+      const ancestors = findAncestorIds(ROOT, node.id) ?? [];
+      dispatch({ type: 'EXPAND_FOLDERS', payload: [...ancestors, node.id] });
+      // Update breadcrumb
       const crumb = buildBreadcrumb(ROOT, node.id);
       dispatch({ type: 'SET_BREADCRUMB_PATH', payload: crumb });
     } else {
-      dispatch({ type: 'TOGGLE_FOLDER', payload: node.id });
+      // Select the file — open properties panel
+      dispatch({ type: 'SELECT_FILE', payload: node });
       const crumb = buildBreadcrumb(ROOT, node.id);
       dispatch({ type: 'SET_BREADCRUMB_PATH', payload: crumb });
     }
@@ -74,7 +81,10 @@ export const FileCard = memo(function FileCard({ node }: FileCardProps) {
       </div>
       <div className="file-card__info">
         <span className="file-card__name truncate" title={node.name}>{node.name}</span>
-        {node.size && (
+        {node.type === 'folder' && node.children && (
+          <span className="file-card__size mono">{node.children.length} item{node.children.length !== 1 ? 's' : ''}</span>
+        )}
+        {node.type === 'file' && node.size && (
           <span className="file-card__size mono">{node.size}</span>
         )}
         {node.modified && (

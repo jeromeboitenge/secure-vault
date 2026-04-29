@@ -142,6 +142,17 @@ export function Sidebar() {
 
   return (
     <div className="sidebar" data-testid="sidebar">
+      {/* Logo Area */}
+      <div className="sidebar__logo">
+        <div className="sidebar__logo-icon-wrapper">
+          <Shield size={20} className="sidebar__logo-icon" />
+        </div>
+        <div className="sidebar__logo-text">
+          <h2>SECUREVAULT</h2>
+          <span>ADMIN / ROOT</span>
+        </div>
+      </div>
+
       {/* Navigation Menu */}
       <nav className="sidebar__navigation" role="navigation" aria-label="Main navigation">
         <ul className="sidebar__nav-list">
@@ -190,12 +201,8 @@ export function Sidebar() {
       <div className="sidebar__footer">
         <div className="sidebar__storage">
           <div className="sidebar__storage-header">
-            <HardDrive 
-              className="sidebar__storage-icon" 
-              size={14}
-              aria-hidden="true"
-            />
             <span className="sidebar__storage-label">Storage Usage</span>
+            <span className="sidebar__storage-percentage">82%</span>
           </div>
           
           <div className="sidebar__storage-bar">
@@ -208,10 +215,6 @@ export function Sidebar() {
               aria-valuemax={100}
               aria-label="Storage usage: 82%"
             />
-          </div>
-          
-          <div className="sidebar__storage-text">
-            <span className="sidebar__storage-percentage">82%</span>
           </div>
         </div>
       </div>
