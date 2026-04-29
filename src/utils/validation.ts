@@ -1,22 +1,11 @@
-/**
- * Data Validation Utilities for SecureVault
- * 
- * These functions ensure that file tree data is valid and safe to use
- * throughout the application. They provide clear error messages to help
- * developers understand what went wrong.
- */
-
 import type { FileNode, FileTreeData, ValidationResult, VaultError } from '../types';
 
-/**
- * Validates a single file node to ensure it has all required properties
- * and that the data makes sense (e.g., files don't have children)
- */
+
 export function validateFileNode(node: any, path: string[] = []): VaultError[] {
   const errors: VaultError[] = [];
   const currentPath = path.length > 0 ? path.join(' > ') : 'root';
 
-  // Check if node exists
+
   if (!node) {
     errors.push({
       code: 'NODE_MISSING',
@@ -26,7 +15,6 @@ export function validateFileNode(node: any, path: string[] = []): VaultError[] {
     return errors;
   }
 
-  // Validate required properties
   if (!node.id || typeof node.id !== 'string') {
     errors.push({
       code: 'INVALID_ID',
@@ -54,9 +42,9 @@ export function validateFileNode(node: any, path: string[] = []): VaultError[] {
     });
   }
 
-  // Validate type-specific properties
+
   if (node.type === 'file') {
-    // Files should not have children
+
     if (node.children && node.children.length > 0) {
       errors.push({
         code: 'FILE_HAS_CHILDREN',
@@ -66,7 +54,6 @@ export function validateFileNode(node: any, path: string[] = []): VaultError[] {
       });
     }
 
-    // Validate file-specific properties if present
     if (node.size !== undefined && (typeof node.size !== 'number' || node.size < 0)) {
       errors.push({
         code: 'INVALID_FILE_SIZE',
@@ -252,13 +239,13 @@ export function areFileNodesEqual(nodeA: FileNode, nodeB: FileNode): boolean {
   if (nodeA.type !== nodeB.type) return false;
   if (nodeA.size !== nodeB.size) return false;
   if (nodeA.encrypted !== nodeB.encrypted) return false;
-  
+
   // Compare modification dates
   if (nodeA.modified?.getTime() !== nodeB.modified?.getTime()) return false;
-  
+
   // Compare children count (don't deep compare for performance)
   if ((nodeA.children?.length || 0) !== (nodeB.children?.length || 0)) return false;
-  
+
   return true;
 }
 
@@ -267,12 +254,12 @@ export function areFileNodesEqual(nodeA: FileNode, nodeB: FileNode): boolean {
  */
 export function formatValidationErrors(errors: VaultError[]): string {
   if (errors.length === 0) return '';
-  
+
   if (errors.length === 1) {
     return `Validation Error: ${errors[0].message}`;
   }
-  
-  return `Multiple Validation Errors:\n${errors.map((error, index) => 
+
+  return `Multiple Validation Errors:\n${errors.map((error, index) =>
     `${index + 1}. ${error.message}`
   ).join('\n')}`;
 }
