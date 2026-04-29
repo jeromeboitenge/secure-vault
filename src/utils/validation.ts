@@ -6,7 +6,7 @@
  * developers understand what went wrong.
  */
 
-import { FileNode, FileTreeData, ValidationResult, VaultError } from '../types';
+import type { FileNode, FileTreeData, ValidationResult, VaultError } from '../types';
 
 /**
  * Validates a single file node to ensure it has all required properties

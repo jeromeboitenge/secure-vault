@@ -19,8 +19,7 @@ import {
   Key,
   Settings
 } from '../UI/Icons';
-import type { FileNode } from '../../types';
-import { formatFileSize } from '../../data/sampleData';
+import type { FileNode } from '../../context/VaultContext';
 import './FileTreeNode.css';
 
 interface FileTreeNodeProps {
@@ -245,9 +244,9 @@ export const FileTreeNode = memo<FileTreeNodeProps>(({
         
         {/* File size or folder item count */}
         <span className="file-tree-node__meta">
-          {node.type === 'file' && node.size !== undefined && (
+          {node.type === 'file' && node.size && (
             <span className="file-tree-node__size">
-              {formatFileSize(node.size)}
+              {node.size}
             </span>
           )}
           {node.type === 'folder' && itemCount !== undefined && (

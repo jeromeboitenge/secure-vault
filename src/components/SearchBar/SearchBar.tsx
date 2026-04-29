@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import {
-  Search, X, Folder, FileText, File, FileImage, FileJson,
+  Search, X, Folder, FileText, File, Image, Code,
   ArrowUp, ArrowDown, CornerDownLeft, Clock,
-} from 'lucide-react';
+} from '../UI/Icons';
 import { useVaultState, useVaultDispatch, type FileNode } from '../../context/VaultContext';
 import { useSearch, type SearchResult } from '../../hooks/useSearch';
 import { findAncestorIds, buildBreadcrumb } from '../../hooks/useFlatTree';
@@ -19,8 +19,8 @@ function getResultIcon(node: FileNode) {
   switch (node.fileType) {
     case 'pdf':
     case 'doc':  return <FileText size={14} />;
-    case 'jpg':  return <FileImage size={14} />;
-    case 'json': return <FileJson size={14} />;
+    case 'jpg':  return <Image size={14} />;
+    case 'json': return <Code size={14} />;
     default:     return <File size={14} />;
   }
 }

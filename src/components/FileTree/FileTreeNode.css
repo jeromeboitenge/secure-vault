@@ -5,10 +5,6 @@
  * hover states, selection, and smooth animations
  */
 
-.file-tree-node__container {
-  /* Container for node and its children */
-}
-
 /* Main node button */
 .file-tree-node {
   display: flex;

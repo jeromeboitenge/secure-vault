@@ -8,8 +8,15 @@
 
 import React, { useState, useCallback } from 'react';
 import { FileTreeNode } from './FileTreeNode';
-import { FileNode, FileTreeData } from '../../types';
+import type { FileNode } from '../../context/VaultContext';
 import './FileTree.css';
+
+interface FileTreeData {
+  root: FileNode;
+  totalFiles: number;
+  totalSize: number;
+  lastModified: Date;
+}
 
 interface FileTreeProps {
   /** The complete file tree data to display */
@@ -155,7 +162,7 @@ export function FileTree({
  * Hook for managing file tree state
  * Provides a convenient way to manage expanded folders and selection
  */
-export function useFileTreeState(initialData?: FileTreeData) {
+export function useFileTreeState() {
   const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set());
   const [selectedFileId, setSelectedFileId] = useState<string | undefined>();
   const [focusedNodeId, setFocusedNodeId] = useState<string | undefined>();

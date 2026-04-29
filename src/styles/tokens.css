@@ -45,6 +45,15 @@
   --font-size-xl: 1.25rem;    /* 20px - Headings */
   --font-size-2xl: 1.5rem;    /* 24px - Large headings */
   
+  /* Font Size Aliases (for compatibility) */
+  --text-xs: var(--font-size-xs);
+  --text-sm: var(--font-size-sm);
+  --text-base: var(--font-size-base);
+  --text-md: var(--font-size-base);
+  --text-lg: var(--font-size-lg);
+  --text-xl: var(--font-size-xl);
+  --text-2xl: var(--font-size-2xl);
+  
   /* Font Weights */
   --font-weight-normal: 400;
   --font-weight-medium: 500;
@@ -74,6 +83,7 @@
   --radius-md: 0.375rem;  /* 6px - Default radius */
   --radius-lg: 0.5rem;    /* 8px - Cards and panels */
   --radius-xl: 0.75rem;   /* 12px - Large elements */
+  --radius-full: 9999px;  /* Full rounded (circles) */
   
   /* Shadows - Subtle Depth */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);

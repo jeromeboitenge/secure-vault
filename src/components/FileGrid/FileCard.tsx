@@ -1,7 +1,7 @@
-import React, { memo, useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import {
-  FileText, File, FileImage, FileJson, Folder, Lock,
-} from 'lucide-react';
+  FileText, File, Image, Code, Folder, Lock,
+} from '../UI/Icons';
 import type { FileNode } from '../../context/VaultContext';
 import { useVaultState, useVaultDispatch } from '../../context/VaultContext';
 import { buildBreadcrumb } from '../../hooks/useFlatTree';
@@ -15,8 +15,8 @@ function getIcon(node: FileNode) {
   switch (node.fileType) {
     case 'pdf':
     case 'doc':  return <FileText size={28} />;
-    case 'jpg':  return <FileImage size={28} />;
-    case 'json': return <FileJson size={28} />;
+    case 'jpg':  return <Image size={28} />;
+    case 'json': return <Code size={28} />;
     default:     return <File size={28} />;
   }
 }

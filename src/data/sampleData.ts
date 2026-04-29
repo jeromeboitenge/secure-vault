@@ -5,7 +5,7 @@
  * shown in the screenshots, with various file types and encryption states
  */
 
-import { FileTreeData, FileNode } from '../types';
+import type { FileTreeData, FileNode } from '../types';
 
 /**
  * Creates sample file tree data for development and testing

@@ -241,3 +241,36 @@
     --color-border-focus: #ffffff;
   }
 }
+
+
+/* Main content area styling */
+.main-content {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-base);
+}
+
+.main-content__header {
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--color-border-subtle);
+  background-color: var(--color-bg-elevated);
+}
+
+.main-content__body {
+  flex: 1;
+  overflow: auto;
+  padding: var(--space-6);
+}
+
+/* Utility classes */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mono {
+  font-family: var(--font-family-mono);
+}

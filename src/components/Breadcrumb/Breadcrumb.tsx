@@ -1,5 +1,4 @@
-import React from 'react';
-import { ChevronRight, FolderLock } from 'lucide-react';
+import { ChevronRight, Folder } from '../UI/Icons';
 import { useVaultState } from '../../context/VaultContext';
 import './Breadcrumb.css';
 
@@ -9,10 +8,10 @@ export function Breadcrumb() {
   if (breadcrumbPath.length === 0) {
     return (
       <nav className="breadcrumb" aria-label="Location">
-        <span className="breadcrumb__item breadcrumb__item--root">
-          <FolderLock size={13} />
-          <span>Vault</span>
-        </span>
+          <span className="breadcrumb__item breadcrumb__item--root">
+            <Folder size={13} />
+            <span>Vault</span>
+          </span>
       </nav>
     );
   }
@@ -26,7 +25,7 @@ export function Breadcrumb() {
             <li key={node.id} className="breadcrumb__segment">
               {index === 0 && (
                 <span className="breadcrumb__root-icon">
-                  <FolderLock size={12} />
+                  <Folder size={12} />
                 </span>
               )}
               <span

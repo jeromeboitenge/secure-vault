@@ -1,9 +1,5 @@
-import React, { useCallback } from 'react';
-import {
-  X, Download, Share2, Trash2, Shield,
-  FileText, File, FileImage, FileJson, Folder,
-  User, Calendar, HardDrive, Lock,
-} from 'lucide-react';
+import { useCallback } from 'react';
+import { X, Download, Share2, Trash2, Shield, FileText, File, Image, Code, Folder, HardDrive, Lock, Clock, Users } from '../UI/Icons';
 import { useVaultState, useVaultDispatch, type FileNode } from '../../context/VaultContext';
 import { Badge } from '../UI/Badge';
 import { Button } from '../UI/Button';
@@ -15,8 +11,8 @@ function getLargeIcon(node: FileNode) {
   switch (node.fileType) {
     case 'pdf':
     case 'doc':  return <FileText size={40} />;
-    case 'jpg':  return <FileImage size={40} />;
-    case 'json': return <FileJson size={40} />;
+    case 'jpg':  return <Image size={40} />;
+    case 'json': return <Code size={40} />;
     default:     return <File size={40} />;
   }
 }
@@ -109,7 +105,7 @@ export function PropertiesPanel() {
             {selectedFile.modified && (
               <div className="props-panel__meta-row">
                 <dt>
-                  <Calendar size={13} />
+                  <Clock size={13} />
                   <span>Modified</span>
                 </dt>
                 <dd className="mono">{selectedFile.modified}</dd>
@@ -118,7 +114,7 @@ export function PropertiesPanel() {
             {selectedFile.owner && (
               <div className="props-panel__meta-row">
                 <dt>
-                  <User size={13} />
+                  <Users size={13} />
                   <span>Owner</span>
                 </dt>
                 <dd>{selectedFile.owner}</dd>
