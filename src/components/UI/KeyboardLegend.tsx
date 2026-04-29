@@ -1,4 +1,3 @@
-import React from 'react';
 import './KeyboardLegend.css';
 
 export function KeyboardLegend() {

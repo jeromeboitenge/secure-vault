@@ -14,7 +14,6 @@ import {
   Users, 
   Clock, 
   Trash2,
-  HardDrive,
   Shield
 } from '../UI/Icons';
 import { FileTreeNode } from '../FileTree/FileTreeNode';

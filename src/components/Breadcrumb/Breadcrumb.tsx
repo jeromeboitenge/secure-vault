@@ -1,15 +1,10 @@
 import { useCallback } from 'react';
-import { ChevronRight, Folder } from '../UI/Icons';
 import { useVaultState, useVaultDispatch } from '../../context/VaultContext';
 import { buildBreadcrumb } from '../../hooks/useFlatTree';
-import rootData from '../../data/data.json';
-import type { FileNode } from '../../context/VaultContext';
 import './Breadcrumb.css';
 
-const ROOT = rootData as FileNode;
-
 export function Breadcrumb() {
-  const { breadcrumbPath } = useVaultState();
+  const { breadcrumbPath, fileTree } = useVaultState();
   const dispatch = useVaultDispatch();
 
   const handleNavigate = useCallback((nodeId: string) => {
@@ -18,7 +13,7 @@ export function Breadcrumb() {
       dispatch({ type: 'SET_BREADCRUMB_PATH', payload: [] });
     } else {
       dispatch({ type: 'NAVIGATE_TO_FOLDER', payload: nodeId });
-      const crumb = buildBreadcrumb(ROOT, nodeId);
+      const crumb = buildBreadcrumb(fileTree, nodeId);
       dispatch({ type: 'SET_BREADCRUMB_PATH', payload: crumb });
     }
   }, [dispatch]);

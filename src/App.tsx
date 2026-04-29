@@ -9,7 +9,6 @@ import { Breadcrumb } from './components/Breadcrumb/Breadcrumb';
 import { SearchBar } from './components/SearchBar/SearchBar';
 import { useFlatTree } from './hooks/useFlatTree';
 import { useKeyboardNav } from './hooks/useKeyboardNav';
-import type { FileNode } from './context/VaultContext';
 import { Search } from './components/UI/Icons';
 import { KeyboardLegend } from './components/UI/KeyboardLegend';
 

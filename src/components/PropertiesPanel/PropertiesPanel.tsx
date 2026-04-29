@@ -160,6 +160,11 @@ export function PropertiesPanel() {
               <Button
                 variant="danger"
                 icon={<Trash2 size={14} />}
+                onClick={() => {
+                  if (selectedFile) {
+                    dispatch({ type: 'DELETE_NODE', payload: selectedFile.id });
+                  }
+                }}
                 aria-label={`Delete ${selectedFile.name}`}
                 style={{ flex: 1 }}
               >
