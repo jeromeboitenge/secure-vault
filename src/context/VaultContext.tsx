@@ -5,12 +5,14 @@ import React, {
   type ReactNode,
 } from 'react';
 
+import rootData from '../data/data.json';
+
 // ── Types ─────────────────────────────────────────────────────
 export interface FileNode {
   id: string;
   name: string;
   type: 'file' | 'folder';
-  fileType?: 'pdf' | 'doc' | 'jpg' | 'json' | 'txt';
+  fileType?: 'pdf' | 'doc' | 'jpg' | 'json' | 'txt' | string;
   size?: string;
   modified?: string;
   owner?: string;
@@ -19,6 +21,7 @@ export interface FileNode {
 }
 
 export interface VaultState {
+  fileTree: FileNode;
   selectedFile: FileNode | null;
   expandedFolders: Set<string>;
   focusedNodeId: string | null;
@@ -40,10 +43,12 @@ export type VaultAction =
   | { type: 'SET_COMMAND_PALETTE'; payload: boolean }
   | { type: 'SET_HAS_USED_KEYBOARD'; payload: boolean }
   | { type: 'SET_BREADCRUMB_PATH'; payload: FileNode[] }
-  | { type: 'NAVIGATE_TO_FOLDER'; payload: string };
+  | { type: 'NAVIGATE_TO_FOLDER'; payload: string }
+  | { type: 'DELETE_NODE'; payload: string };
 
 // ── Initial State ─────────────────────────────────────────────
 const initialState: VaultState = {
+  fileTree: rootData as FileNode,
   selectedFile: null,
   expandedFolders: new Set(['root']),
   focusedNodeId: null,
@@ -101,6 +106,39 @@ function vaultReducer(state: VaultState, action: VaultAction): VaultState {
     }
     case 'NAVIGATE_TO_FOLDER': {
       return { ...state, currentFolderId: action.payload, selectedFile: null };
+    }
+    case 'DELETE_NODE': {
+      const idToDelete = action.payload;
+      
+      // Helper function to recursively filter out the node
+      const deleteRecursive = (node: FileNode): FileNode | null => {
+        if (node.id === idToDelete) return null;
+        if (!node.children) return node;
+        
+        return {
+          ...node,
+          children: node.children
+            .map(deleteRecursive)
+            .filter((child): child is FileNode => child !== null),
+        };
+      };
+
+      const newTree = deleteRecursive(state.fileTree);
+      
+      // If we somehow deleted the root (shouldn't happen), revert to old tree
+      if (!newTree) return state;
+
+      // If the currently selected file was deleted, clear it
+      const newSelectedFile = state.selectedFile?.id === idToDelete ? null : state.selectedFile;
+      
+      // We don't automatically navigate up if a folder is deleted, but we could if we wanted to.
+      // For now, let's keep it simple.
+
+      return {
+        ...state,
+        fileTree: newTree,
+        selectedFile: newSelectedFile,
+      };
     }
     default:
       return state;

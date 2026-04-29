@@ -10,20 +10,17 @@ import { SearchBar } from './components/SearchBar/SearchBar';
 import { useFlatTree } from './hooks/useFlatTree';
 import { useKeyboardNav } from './hooks/useKeyboardNav';
 import type { FileNode } from './context/VaultContext';
-import rootData from './data/data.json';
 import { Search } from './components/UI/Icons';
 import { KeyboardLegend } from './components/UI/KeyboardLegend';
 
-const ROOT = rootData as FileNode;
-
 function AppContent() {
-  const { selectedFile, expandedFolders } = useVaultState();
+  const { fileTree, selectedFile, expandedFolders, breadcrumbPath } = useVaultState();
   const dispatch = useVaultDispatch();
   const containerRef = useRef<HTMLDivElement>(null);
-  const flatTree = useFlatTree(ROOT, expandedFolders);
+  const flatTree = useFlatTree(fileTree, expandedFolders);
 
   // Attach keyboard nav to the whole app container
-  useKeyboardNav({ flatTree, rootNode: ROOT, containerRef });
+  useKeyboardNav({ flatTree, rootNode: fileTree, containerRef });
 
   // Global Ctrl+K shortcut (works even when search input has focus, but is
   // guarded in useKeyboardNav only for non-input elements — we add a separate
@@ -86,7 +83,7 @@ function AppContent() {
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.65rem', fontWeight: 700, color: 'var(--color-text-secondary)', letterSpacing: '0.5px' }}>
                   <span style={{ color: 'var(--color-accent-primary)' }}>&gt;</span>
-                  <span>ACTIVE DIRECTORY: {expandedFolders.size > 0 ? Array.from(expandedFolders).pop()?.toUpperCase() : 'ROOT'}</span>
+                  <span>ACTIVE DIRECTORY: {breadcrumbPath.length > 0 ? breadcrumbPath[breadcrumbPath.length - 1].name.toUpperCase() : 'ROOT'}</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-text-secondary)' }}>
                   <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
