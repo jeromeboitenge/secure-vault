@@ -74,7 +74,7 @@ export function validateFileNode(node: any, path: string[] = []): VaultError[] {
   }
 
   if (node.type === 'folder') {
-    // Validate children if present
+
     if (node.children) {
       if (!Array.isArray(node.children)) {
         errors.push({
@@ -84,7 +84,7 @@ export function validateFileNode(node: any, path: string[] = []): VaultError[] {
           timestamp: new Date()
         });
       } else {
-        // Recursively validate each child
+
         node.children.forEach((child: any, index: number) => {
           const childPath = [...path, node.name || `item-${index}`];
           const childErrors = validateFileNode(child, childPath);
