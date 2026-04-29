@@ -24,7 +24,6 @@
   cursor: not-allowed;
 }
 
-/* ── Sizes ──────────────────────────────── */
 .btn--sm {
   font-size: var(--text-xs);
   padding: var(--space-1) var(--space-3);
@@ -37,7 +36,7 @@
   height: 36px;
 }
 
-/* ── Variants ───────────────────────────── */
+
 .btn--primary {
   background: var(--color-accent-primary);
   color: #fff;
