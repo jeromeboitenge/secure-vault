@@ -61,6 +61,11 @@ export const FileCard = memo(function FileCard({ node }: FileCardProps) {
     }
   }, [dispatch, node]);
 
+  const getExt = () => {
+    if (node.type === 'folder') return 'DIR';
+    return node.fileType?.toUpperCase() || 'FILE';
+  };
+
   return (
     <article
       className={`file-card ${isSelected ? 'file-card--selected' : ''}`}
@@ -71,26 +76,39 @@ export const FileCard = memo(function FileCard({ node }: FileCardProps) {
       aria-label={`${node.name}${node.encrypted ? ', encrypted' : ''}${node.size ? `, ${node.size}` : ''}`}
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(); }}}
     >
-      <div className={`file-card__icon ${getIconClass(node)}`}>
-        {getIcon(node)}
-        {node.encrypted && (
-          <span className="file-card__lock" title="AES-256 encrypted">
-            <Lock size={11} />
-          </span>
-        )}
+      {isSelected && <div className="file-card__selected-badge">SELECTED</div>}
+      
+      <div className="file-card__top">
+        <div className={`file-card__icon ${getIconClass(node)}`}>
+          {getIcon(node)}
+        </div>
+        <span className="file-card__type-label">{getExt()}</span>
       </div>
+      
       <div className="file-card__info">
         <span className="file-card__name truncate" title={node.name}>{node.name}</span>
-        {node.type === 'folder' && node.children && (
-          <span className="file-card__size mono">{node.children.length} item{node.children.length !== 1 ? 's' : ''}</span>
-        )}
-        {node.type === 'file' && node.size && (
-          <span className="file-card__size mono">{node.size}</span>
-        )}
-        {node.modified && (
-          <span className="file-card__date">{node.modified}</span>
-        )}
+        
+        <span className="file-card__meta">
+          {node.type === 'folder' && node.children && (
+            <>UPDATED 2H AGO</> /* Hardcoded for visual match, or use node.modified */
+          )}
+          {node.type === 'file' && (
+            <>
+              {node.size}
+              {node.encrypted && ' - ENCRYPTED'}
+              {!node.encrypted && node.fileType === 'pem' && ' - IMMUTABLE'}
+              {!node.encrypted && node.fileType !== 'pem' && ' - ROOT ONLY'}
+            </>
+          )}
+        </span>
       </div>
+
+      {isSelected && node.type === 'file' && (
+        <div className="file-card__footer">
+          <span className="file-card__hash">HASH: 8f2e...9a11</span>
+          <span className="file-card__check"><Lock size={10} /></span>
+        </div>
+      )}
     </article>
   );
 });

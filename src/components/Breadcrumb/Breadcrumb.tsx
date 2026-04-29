@@ -33,12 +33,11 @@ export function Breadcrumb() {
             onClick={() => handleNavigate('root')}
             aria-label="Navigate to Vault root"
           >
-            <Folder size={13} />
-            <span>Vault</span>
+            <span>ROOT</span>
           </button>
           {breadcrumbPath.length > 0 && (
             <span className="breadcrumb__sep" aria-hidden="true">
-              <ChevronRight size={12} />
+              /
             </span>
           )}
         </li>
@@ -49,19 +48,19 @@ export function Breadcrumb() {
             <li key={node.id} className="breadcrumb__segment">
               {isLast ? (
                 <span className="breadcrumb__item breadcrumb__item--active">
-                  {node.name}
+                  {node.name.toUpperCase()}
                 </span>
               ) : (
                 <button
                   className="breadcrumb__item breadcrumb__item--link"
                   onClick={() => handleNavigate(node.id)}
                 >
-                  {node.name}
+                  {node.name.toUpperCase()}
                 </button>
               )}
               {!isLast && (
                 <span className="breadcrumb__sep" aria-hidden="true">
-                  <ChevronRight size={12} />
+                  /
                 </span>
               )}
             </li>

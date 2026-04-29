@@ -14,7 +14,8 @@ import {
   Users, 
   Clock, 
   Trash2,
-  HardDrive
+  HardDrive,
+  Shield
 } from '../UI/Icons';
 import { FileTreeNode } from '../FileTree/FileTreeNode';
 import { useVaultState, useVaultDispatch, type FileNode } from '../../context/VaultContext';

@@ -1,94 +1,121 @@
 .file-card {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
   padding: var(--space-4);
-  background: var(--color-bg-surface);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-lg);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  transition:
-    background var(--transition-fast),
-    border-color var(--transition-fast),
-    box-shadow var(--transition-fast),
-    transform var(--transition-fast);
+  transition: all var(--transition-fast);
   position: relative;
   outline: none;
+  min-height: 100px;
 }
 
 .file-card:hover {
-  background: var(--color-bg-elevated);
-  border-color: var(--color-border-default);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .file-card--selected {
-  border-color: var(--color-accent-primary);
-  background: var(--color-accent-glow);
-  box-shadow: 0 0 0 1px var(--color-accent-primary);
+  border-color: #7e62f9;
+  background: rgba(126, 98, 249, 0.05);
 }
 
 .file-card:focus-visible {
-  outline: 2px solid var(--color-accent-primary);
+  outline: 2px solid #7e62f9;
   outline-offset: 2px;
 }
 
-/* ── Icon area ────────────────────────────────── */
-.file-card__icon {
-  position: relative;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-lg);
-  flex-shrink: 0;
+/* ── Selected Badge ────────────────────────────── */
+.file-card__selected-badge {
+  position: absolute;
+  top: -10px;
+  right: 12px;
+  background: #7e62f9;
+  color: white;
+  font-size: 0.55rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
 }
 
-.file-card__icon--folder { background: rgba(245, 158, 11, 0.15); color: #F59E0B; }
-.file-card__icon--pdf    { background: rgba(239, 68, 68, 0.12);  color: #EF4444; }
-.file-card__icon--doc    { background: rgba(59, 130, 246, 0.12); color: #3B82F6; }
-.file-card__icon--img    { background: rgba(16, 185, 129, 0.12); color: #10B981; }
-.file-card__icon--json   { background: rgba(139, 92, 246, 0.12); color: #8B5CF6; }
-.file-card__icon--txt    { background: rgba(139, 149, 168, 0.1); color: var(--color-text-secondary); }
+/* ── Top area (Icon & Type) ───────────────────── */
+.file-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-3);
+}
 
-.file-card__lock {
-  position: absolute;
-  bottom: -3px;
-  right: -3px;
-  width: 18px;
-  height: 18px;
-  background: var(--color-bg-elevated);
-  border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-full);
+.file-card__icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-success);
+  color: var(--color-text-secondary);
+}
+
+/* Hardcode specific icon colors to match the design */
+.file-card__icon--folder { color: var(--color-text-secondary); }
+.file-card__icon--pdf    { color: var(--color-text-secondary); }
+.file-card__icon--doc    { color: var(--color-text-secondary); }
+.file-card__icon--img    { color: var(--color-text-secondary); }
+.file-card__icon--json   { color: var(--color-text-secondary); }
+.file-card__icon--txt    { color: var(--color-text-secondary); }
+
+/* But if selected, wait, in design the icon might be different, let's keep it simple */
+.file-card--selected .file-card__icon {
+  color: #fff;
+}
+
+.file-card__type-label {
+  font-family: var(--font-family-mono);
+  font-size: 0.55rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
 }
 
 /* ── Info area ────────────────────────────────── */
 .file-card__info {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  min-width: 0;
+  gap: 4px;
 }
 
 .file-card__name {
-  font-size: var(--text-sm);
-  font-weight: 500;
+  font-size: 0.8rem;
+  font-weight: 600;
   color: var(--color-text-primary);
   display: block;
 }
 
-.file-card__size {
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
+.file-card__meta {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
 }
 
-.file-card__date {
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
+/* ── Footer (Hash) ────────────────────────────── */
+.file-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.file-card__hash {
+  font-family: var(--font-family-mono);
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.file-card__check {
+  color: #7e62f9;
+  display: flex;
+  align-items: center;
 }
